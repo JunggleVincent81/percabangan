@@ -1,13 +1,30 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript Percabangan</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <style>
-                .sidebar-link {
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Belajar Percabangan</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .custom-alert {
+      position: absolute;
+      background-color: #fef3c7;
+      border: 1px solid #facc15;
+      color: #78350f;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      z-index: 50;
+      white-space: normal;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      max-width: 300px;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(5px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    .sidebar-link {
             display: flex;
             align-items: center;
             padding: 0.5rem 1rem;
@@ -45,247 +62,213 @@
             color: #93c5fd; /* Warna teks saat aktif dalam mode gelap */
         }
 
-    </style>
+
+  </style>
 </head>
+<body class="bg-gray-100 p-4 relative">
 
-<body class="bg-gray-100 dark:bg-gray-800 dark:text-white">
-    <!-- Navbar -->
-    <nav class="bg-blue-600 text-white fixed top-0 left-0 w-full shadow-md z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <div class="text-lg font-bold">Project</div>
-                <div class="hidden md:flex space-x-4">
-                    <a href="#" class="hover:underline">Home</a>
-                    <a href="#" class="hover:underline">About</a>
-                    <a href="#" class="hover:underline">Projects</a>
-                    <a href="#" class="hover:underline">Contact</a>
-                </div>
-            </div>
-        </div>
-    </nav>
-    <div class="container mx-auto p-4 flex">
-        <div class="flex-1">
-            </div>
+  <main class="space-y-6"></main>
 
-        <div class="fixed right-4 top-1/2 transform -translate-y-1/2">
-            <a href="#if" class="sidebar-link" data-id="if">If</a>
-            <a href="#ifElse" class="sidebar-link" data-id="ifElse">If-Else</a>
-            <a href="#elseIf" class="sidebar-link" data-id="elseIf">Else-If</a>
-            <a href="#switch" class="sidebar-link" data-id="switch">Switch</a>
-            <a href="#ternary" class="sidebar-link" data-id="ternary">Ternary</a>
-        </div>
-    </div>
+  <aside class="fixed right-4 top-1/2 transform -translate-y-1/2 z-40 space-y-2">
+    <a href="#if" class="sidebar-link" data-id="if">If</a>
+    <a href="#ifelse" class="sidebar-link" data-id="ifElse">If-Else</a>
+    <a href="#elseif" class="sidebar-link" data-id="elseIf">Else-If</a>
+    <a href="#switch" class="sidebar-link" data-id="switch">Switch</a>
+    <a href="#ternary" class="sidebar-link" data-id="ternary">Ternary</a>
+  </aside>
+  <!-- Custom alert element -->
+  <div id="customAlert" class="custom-alert hidden"></div>
 
-
-    <div class="container mx-auto p-4" style="max-width: 85%;">
-        <div id="if" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 bg-white dark:bg-gray-700 rounded-lg shadow-md p-6 hover:scale-105 transition-transform duration-300">
-            <div class="md:w-7/10 mb-4">
-                <h2 class="text-lg font-semibold mb-2">If Statement</h2>
-                <input type="number" id="if-input" placeholder="Masukkan Angka" oninput="updateCodeSamples()" style="width: 80%;" class=" p-2 border rounded mb-2 dark:bg-gray-600 dark:border-gray-500">
-                <button onclick="checkIf()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Cek</button>
-                <p id="if-result" class="mt-2"></p>
-            </div>
-            <div class="md:w-3/10 relative">
-                <div class="absolute top-0 right-0 flex space-x-0 bg-gray-800 rounded-t-md">
-                    <button onclick="changeCodeSample('if', 'java')" class="text-white text-xs px-3 py-2 rounded-t-md hover:bg-gray-700">Java</button>
-                    <button onclick="changeCodeSample('if', 'js')" class="text-white text-xs px-3 py-2 rounded-t-md hover:bg-gray-700">JS</button>
-                    <button onclick="changeCodeSample('if', 'php')" class="text-white text-xs px-3 py-2 rounded-t-md hover:bg-gray-700">PHP</button>
-                </div>
-                <pre id="if-code" class="bg-gray-800 text-white p-3 rounded-b-md overflow-x-auto whitespace-pre-wrap mt-8"></pre>
-            </div>
-        </div>
-    
-        <div id="ifElse" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 bg-white dark:bg-gray-700 rounded-lg shadow-md p-6 hover:scale-105 transition-transform duration-300">
-            <div class="md:w-7/10 mb-4">
-                <h2 class="text-lg font-semibold mb-2">If-Else Statement</h2>
-                <input type="number" id="ifElse-input" placeholder="Masukkan Nilai" style="width: 80%;" class=" p-2 border rounded mb-2 dark:bg-gray-600 dark:border-gray-500">
-                <button onclick="checkIfElse()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Cek</button>
-                <p id="ifElse-result" class="mt-2"></p>
-            </div>
-            <div class="md:w-3/10 relative">
-                <div class="absolute top-0 right-0 flex space-x-0 bg-gray-800 rounded-t-md">
-                    <button onclick="changeCodeSample('ifElse', 'java')" class="text-white text-xs px-3 py-2 rounded-t-md hover:bg-gray-700">Java</button>
-                    <button onclick="changeCodeSample('ifElse', 'js')" class="text-white text-xs px-3 py-2 rounded-t-md hover:bg-gray-700">JS</button>
-                    <button onclick="changeCodeSample('ifElse', 'php')" class="text-white text-xs px-3 py-2 rounded-t-md hover:bg-gray-700">PHP</button>
-                </div>
-                <pre id="ifElse-code" class="bg-gray-800 text-white p-3 rounded-b-md overflow-x-auto whitespace-pre-wrap mt-8"></pre>
-            </div>
-        </div>
-    
-        <div id="elseIf" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 bg-white dark:bg-gray-700 rounded-lg shadow-md p-6 hover:scale-105 transition-transform duration-300">
-            <div class="md:w-7/10 mb-4">
-                <h2 class="text-lg font-semibold mb-2">Else-If Statement</h2>
-                <input type="number" id="elseIf-input" placeholder="Masukkan Nilai" style="width: 80%;" class=" p-2 border rounded mb-2 dark:bg-gray-600 dark:border-gray-500">
-                <button onclick="checkElseIf()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Cek</button>
-                <p id="elseIf-result" class="mt-2"></p>
-            </div>
-            <div class="md:w-3/10 relative">
-                <div class="absolute top-0 right-0 flex space-x-0 bg-gray-800 rounded-t-md">
-                    <button onclick="changeCodeSample('elseIf', 'java')" class="text-white text-xs px-3 py-2 rounded-t-md hover:bg-gray-700">Java</button>
-                    <button onclick="changeCodeSample('elseIf', 'js')" class="text-white text-xs px-3 py-2 rounded-t-md hover:bg-gray-700">JS</button>
-                    <button onclick="changeCodeSample('elseIf', 'php')" class="text-white text-xs px-3 py-2 rounded-t-md hover:bg-gray-700">PHP</button>
-                </div>
-                <pre id="elseIf-code" class="bg-gray-800 text-white p-3 rounded-b-md overflow-x-auto whitespace-pre-wrap mt-8"></pre>
-            </div>
-        </div>
-    
-        <div id="switch" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 bg-white dark:bg-gray-700 rounded-lg shadow-md p-6 hover:scale-105 transition-transform duration-300">
-            <div class="md:w-7/10 mb-4">
-                <h2 class="text-lg font-semibold mb-2">Switch Case</h2>
-                <input type="number" id="switch-input" placeholder="Masukkan Hari (1-7)" style="width: 80%;" class=" p-2 border rounded mb-2 dark:bg-gray-600 dark:border-gray-500">
-                <button onclick="checkSwitch()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Cek</button>
-                <p id="switch-result" class="mt-2"></p>
-            </div>
-            <div class="md:w-3/10 relative">
-                <div class="absolute top-0 right-0 flex space-x-0 bg-gray-800 rounded-t-md">
-                    <button onclick="changeCodeSample('switch', 'java')" class="text-white text-xs px-3 py-2 rounded-t-md hover:bg-gray-700">Java</button>
-                    <button onclick="changeCodeSample('switch', 'js')" class="text-white text-xs px-3 py-2 rounded-t-md hover:bg-gray-700">JS</button>
-                    <button onclick="changeCodeSample('switch', 'php')" class="text-white text-xs px-3 py-2 rounded-t-md hover:bg-gray-700">PHP</button>
-                </div>
-                <pre id="switch-code" class="bg-gray-800 text-white p-3 rounded-b-md overflow-x-auto whitespace-pre-wrap mt-8"></pre>
-            </div>
-        </div>
-    
-        <div id="ternary" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 bg-white dark:bg-gray-700 rounded-lg shadow-md p-6 hover:scale-105 transition-transform duration-300">
-            <div class="mb-4">
-                <h2 class="text-lg font-semibold mb-2">Ternary Operator</h2>
-                <input type="number" id="ternary-input" placeholder="Masukkan Nilai" style="width: 80%;" class=" p-2 border rounded mb-2 dark:bg-gray-600 dark:border-gray-500">
-                <button onclick="checkTernary()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Cek</button>
-                <p id="ternary-result" class="mt-2"></p>
-            </div>
-            <div class="relative">
-                <div class="absolute top-0 right-0 flex space-x-0 bg-gray-800 rounded-t-md">
-                    <button onclick="changeCodeSample('ternary', 'java')" class="text-white text-xs px-3 py-2 rounded-t-md hover:bg-gray-700">Java</button>
-                    <button onclick="changeCodeSample('ternary', 'js')" class="text-white text-xs px-3 py-2 rounded-t-md hover:bg-gray-700">JS</button>
-                    <button onclick="changeCodeSample('ternary', 'php')" class="text-white text-xs px-3 py-2 rounded-t-md hover:bg-gray-700">PHP</button>
-                </div>
-                <pre id="ternary-code" class="bg-gray-800 text-white p-3 rounded-b-md overflow-x-auto whitespace-pre-wrap mt-8"></pre>
-            </div>
-        </div>
-
-    <script>
+  <script>
 document.addEventListener('DOMContentLoaded', function() {
-            function updateActiveLink() {
-                const sections = ['if', 'ifElse', 'elseIf', 'switch', 'ternary'];
-                let activeSection = null;
+  const sidebarLinks = document.querySelectorAll('.sidebar-link');
 
-                for (const sectionId of sections) {
-                    const section = document.getElementById(sectionId);
-                    const rect = section.getBoundingClientRect();
+  // Variabel untuk melacak section yang aktif berdasarkan scroll
+  let activeSection = '';
 
-                    if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
-                        activeSection = sectionId;
-                        break;
-                    }
-                }
+  // Fungsi untuk mengupdate link yang aktif berdasarkan scroll
+  function updateActiveLink() {
+    let currentSection = '';
+    sidebarLinks.forEach(link => {
+      const section = document.querySelector(link.getAttribute('href')); // Menggunakan href untuk menemukan elemen yang sesuai
+      if (section && window.scrollY + window.innerHeight / 2 >= section.offsetTop) {
+        currentSection = link.dataset.id;
+      }
+    });
 
-                const sidebarLinks = document.querySelectorAll('.sidebar-link');
-                sidebarLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.dataset.id === activeSection) {
-                        link.classList.add('active');
-                    }
-                });
-            }
+    // Jika section aktif berubah, update class 'active'
+    if (currentSection !== activeSection) {
+      sidebarLinks.forEach(link => link.classList.remove('active'));
+      const activeLink = document.querySelector(`[data-id="${currentSection}"]`);
+      if (activeLink) {
+        activeLink.classList.add('active');
+      }
+      activeSection = currentSection;
+    }
+  }
 
-            window.addEventListener('scroll', updateActiveLink);
-            updateActiveLink(); // Panggil saat halaman dimuat
-        });
-        const codeSamplesData = {
-            if: {
-                java: "int num = ?;\nif (num > 0) {\n    System.out.println(\"Positif\");\n}",
-                js: "let num = ?;\nif(num > 0) {\n    console.log(\"Positif\");\n}",
-                php: "$num = ?;\nif ($num > 0) {\n    echo \"Positif\";\n}"
-            },
-            ifElse: {
-                java: `if (num >= 60) {\n    System.out.println("Lulus");\n} else {\n    System.out.println("Tidak Lulus");\n}`,
-                js: `if (num >= 60) {\n    console.log("Lulus");\n} else {\n    console.log("Tidak Lulus");\n}`,
-                php: `if ($num >= 60) {\n    echo "Lulus";\n} else {\n    echo "Tidak Lulus";\n}`
-            },
-            elseIf: {
-                java: `if (nilai >= 90) {\n    System.out.println("A");\n} else if (nilai >= 80) {\n    System.out.println("B");\n} else {\n    System.out.println("C atau D");\n}`,
-                js: `if (nilai >= 90) {\n    console.log("A");\n} else if (nilai >= 80) {\n    console.log("B");\n} else {\n    console.log("C atau D");\n}`,
-                php: `if ($nilai >= 90) {\n    echo "A";\n} elseif ($nilai >= 80) {\n    echo "B";\n} else {\n    echo "C atau D";\n}`
-            },
-            switch: {
-                java: `switch (day) {\n    case 1: System.out.println("Senin"); break;\n    case 2: System.out.println("Selasa"); break;\n    default: System.out.println("Hari Tidak Valid");\n}`,
-                js: `switch (day) {\n    case 1: console.log("Senin"); break;\n    case 2: console.log("Selasa"); break;\n    default: console.log("Hari Tidak Valid");\n}`,
-                php: `switch ($day) {\n    case 1: echo "Senin"; break;\n    case 2: echo "Selasa"; break;\n    default: echo "Hari Tidak Valid";\n}`
-            },
-            ternary: {
-                java: `String result = (nilai >= 60) ? "Lulus" : "Tidak Lulus";\nSystem.out.println(result);`,
-                js: `let result = (nilai >= 60) ? "Lulus" : "Tidak Lulus";\nconsole.log(result);`,
-                php: `$result = ($nilai >= 60) ? "Lulus" : "Tidak Lulus";\necho $result;`
-            }
-        };
+  // Update link aktif saat halaman dimuat
+  sidebarLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.dataset.id === activeSection) {
+      link.classList.add('active');
+    }
+  });
 
-        function checkIf() {
-            let num = Number(document.getElementById("if-input").value);
-            let hasil;
-            if (num > 0) {
-                hasil = "Positif";
-            }
+  // Panggil fungsi saat halaman di-scroll
+  window.addEventListener('scroll', updateActiveLink);
 
-            document.getElementById("if-result").innerText = "Hasil: " + hasil;
-        }
+  // Panggil fungsi saat halaman dimuat untuk pertama kali
+  updateActiveLink();
+});
 
-        function checkIfElse() {
-            let nilai = document.getElementById("ifElse-input").value;
-            document.getElementById("ifElse-result").innerText = nilai >= 60 ? "Lulus" : "Tidak Lulus";
-        }
 
-        function checkElseIf() {
-            let nilai = document.getElementById("elseIf-input").value;
-            let result = nilai >= 90 ? "A" : nilai >= 80 ? "B" : "C atau D";
-            document.getElementById("elseIf-result").innerText = result;
-        }
+    function updateCode(section) {
+      const val = document.getElementById(`input${section}`).value;
+      const num = parseInt(val) || 0;
+      const span = document.getElementById(`result${section}`);
+      const javaCode = document.querySelector(`#${section.toLowerCase()} .lang-code.java`);
+      const jsCode = document.querySelector(`#${section.toLowerCase()} .lang-code.js`);
+      const phpCode = document.querySelector(`#${section.toLowerCase()} .lang-code.php`);
 
-        function checkSwitch() {
-            let day = parseInt(document.getElementById("switch-input").value);
-            let result;
-            switch (day) {
-                case 1:
-                    result = "Senin";
-                    break;
-                case 2:
-                    result = "Selasa";
-                    break;
-                case 3:
-                    result = "Rabu";
-                    break;
-                case 4:
-                    result = "Kamis";
-                    break;
-                case 5:
-                    result = "Jumat";
-                    break;
-                case 6:
-                    result = "Sabtu";
-                    break;
-                case 7:
-                    result = "Minggu";
-                    break;
-                default:
-                    result = "Hari Tidak Valid";
-            }
-            document.getElementById("switch-result").innerText = result;
-        }
+      let java = `int num = ${num};\n`;
+      let js = `let num = ${num};\n`;
+      let php = `$num = ${num};\n`;
 
-        function checkTernary() {
-            let nilai = document.getElementById("ternary-input").value;
-            document.getElementById("ternary-result").innerText = nilai >= 60 ? "Lulus" : "Tidak Lulus";
-        }
+      switch (section) {
+        case 'If':
+          java += `\nif (num > 0) {\n    System.out.println("Positif");\n}`;
+          js += `\nif (num > 0) {\n  console.log("Positif");\n}`;
+          php += `\nif ($num > 0) {\n    echo "Positif";\n}`;
+          span.textContent = num > 0 ? "Positif" : "(tidak dijalankan)";
+          break;
+        case 'IfElse':
+          java += `\nif (num > 0) {\n    System.out.println("Positif");\n} else {\n    System.out.println("Negatif atau Nol");\n}`;
+          js += `\nif (num > 0) {\n  console.log("Positif");\n} else {\n  console.log("Negatif atau Nol");\n}`;
+          php += `\nif ($num > 0) {\n    echo "Positif";\n} else {\n    echo "Negatif atau Nol";\n}`;
+          span.textContent = num > 0 ? "Positif" : "Negatif atau Nol";
+          break;
+        case 'ElseIf':
+          java += `\nif (num > 0) {\n    System.out.println("Positif");\n} else if (num < 0) {\n    System.out.println("Negatif");\n} else {\n    System.out.println("Nol");\n}`;
+          js += `\nif (num > 0) {\n  console.log("Positif");\n} else if (num < 0) {\n  console.log("Negatif");\n} else {\n  console.log("Nol");\n}`;
+          php += `\nif ($num > 0) {\n    echo "Positif";\n} elseif ($num < 0) {\n    echo "Negatif";\n} else {\n    echo "Nol";\n}`;
+          span.textContent = num > 0 ? "Positif" : num < 0 ? "Negatif" : "Nol";
+          break;
+        case 'Switch':
+          java += `\nswitch (num) {\n  case 1:\n    System.out.println("Satu");\n    break;\n  case 2:\n    System.out.println("Dua");\n    break;\n  case 3:\n    System.out.println("Tiga");\n    break;\n  default:\n    System.out.println("Diluar jangkauan");\n}`;
+          js += `\nswitch(num) {\n  case 1:\n    console.log("Satu");\n    break;\n  case 2:\n    console.log("Dua");\n    break;\n  case 3:\n    console.log("Tiga");\n    break;\n  default:\n    console.log("Diluar jangkauan");\n}`;
+          php += `\nswitch ($num) {\n  case 1:\n    echo "Satu";\n    break;\n  case 2:\n    echo "Dua";\n    break;\n  case 3:\n    echo "Tiga";\n    break;\n  default:\n    echo "Diluar jangkauan";\n}`;
+          span.textContent = num === 1 ? "Satu" : num === 2 ? "Dua" : num === 3 ? "Tiga" : "Diluar jangkauan";
+          break;
+        case 'Ternary':
+          java += `\nString result = (num > 0) ? "Positif" : "Negatif atau Nol";\nSystem.out.println(result);`;
+          js += `\nlet result = (num > 0) ? "Positif" : "Negatif atau Nol";\nconsole.log(result);`;
+          php += `\n$result = ($num > 0) ? "Positif" : "Negatif atau Nol";\necho $result;`;
+          span.textContent = num > 0 ? "Positif" : "Negatif atau Nol";
+          break;
+      }
 
-        function changeCodeSample(type, lang) {
-            document.getElementById(type + "-code").innerText = codeSamplesData[type][lang];
-        }
+      javaCode.innerHTML = convertToClickable(java);
+      jsCode.innerHTML = convertToClickable(js);
+      phpCode.innerHTML = convertToClickable(php);
+    }
 
-        document.addEventListener("DOMContentLoaded", function() {
-            ["if", "ifElse", "elseIf", "switch", "ternary"].forEach(type => {
-                changeCodeSample(type, "java");
-            });
-        });
-    </script>
+    function switchLang(section, lang) {
+      const container = document.getElementById(section.toLowerCase());
+      container.querySelectorAll('.lang-code').forEach(el => el.classList.add('hidden'));
+      container.querySelector(`.lang-code.${lang}`).classList.remove('hidden');
+      container.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('bg-blue-500', 'text-white');
+        btn.classList.add('bg-gray-300');
+      });
+      container.querySelector(`.tab-btn[data-lang="${lang}"]`).classList.remove('bg-gray-300');
+      container.querySelector(`.tab-btn[data-lang="${lang}"]`).classList.add('bg-blue-500', 'text-white');
+    }
+
+    function convertToClickable(code) {
+      const explanations = {
+  'System\\.out\\.println': 'Menampilkan output dari kondisi code diatas.',
+  'console\\.log': 'Menampilkan output dalam bahasa JavaScript.',
+  'echo': 'Menampilkan output dalam bahasa php.',
+  'if \\(.*\\)': 'Kondisi if ini bertujuan untuk mengecek num yang kamu inputkan lebih dari 0 atau tidak.',
+  'else if': 'Kondisi tambahan jika if tidak terpenuhi.',
+  'elseif': 'Kondisi tambahan di PHP jika if tidak terpenuhi.',
+  'else': 'Kondisi terakhir jika semua kondisi sebelumnya tidak terpenuhi.',
+  'switch': 'Struktur percabangan berdasarkan nilai.',
+  'case': 'Kasus kondisi tertentu dalam switch.',
+  'break': 'Menghentikan eksekusi dalam switch.',
+  'default': 'Kasus default jika tidak ada yang cocok.',
+  'int num': 'int num disini untuk mendeklarasikan angka yang di mau dilihat hasilnya dalam bahasa java.',
+  'let num': 'let num disini untuk mendeklarasikan angka yang di mau dilihat hasilnya dalam bahasa javascript.',
+  '\\$num(?!\\s*=)': '\\$num disini untuk digunakan dalam kondisi PHP.',
+  '\\$num\\s*=': 'Deklarasi variabel $num di PHP.',
+  'result = .*?;': 'Penugasan hasil menggunakan operator ternary untuk menunjukkan hasil akhirnya.',
+  '}':'sebagai penutup atau akhir dari code atau kondisi'
+};
+
+
+      const lines = code.split('\n');
+      return lines.map(line => {
+        const explanation = Object.entries(explanations).find(([pattern]) => new RegExp(pattern).test(line));
+        const text = explanation ? explanation[1] : '';
+        const safeLine = line.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        return `<div class="cursor-pointer hover:bg-gray-800 p-1 rounded relative text-sm font-mono" onclick="showAlert(event, '${text.replace(/'/g, "\\'")}')">${safeLine}</div>`;
+      }).join('\n');
+    }
+
+    function showAlert(event, text) {
+      const alertBox = document.getElementById('customAlert');
+      alertBox.textContent = text;
+      alertBox.classList.remove('hidden');
+
+      const rect = event.target.getBoundingClientRect();
+      alertBox.style.top = `${window.scrollY + rect.top - alertBox.offsetHeight - 8}px`;
+      alertBox.style.left = `${rect.left}px`;
+
+      clearTimeout(alertBox.timeout);
+      alertBox.timeout = setTimeout(() => {
+        alertBox.classList.add('hidden');
+      }, 2000);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const main = document.querySelector("main");
+      const sections = [
+        { id: 'If', title: '1. IF' },
+        { id: 'IfElse', title: '2. IF ELSE' },
+        { id: 'ElseIf', title: '3. ELSE IF' },
+        { id: 'Switch', title: '4. SWITCH CASE' },
+        { id: 'Ternary', title: '5. Ternary Operator' }
+      ];
+      sections.forEach(({ id, title }) => {
+        const lower = id.toLowerCase();
+        main.insertAdjacentHTML("beforeend", `
+          <section id="${lower}" class="bg-white p-6 rounded shadow">
+            <h2 class="text-lg font-bold mb-2">${title}</h2>
+            <div class="flex flex-col md:flex-row gap-4">
+              <div class="md:w-1/2">
+                <label class="block mb-1">Masukkan angka:</label>
+                <input id="input${id}" type="number" class="w-full border rounded p-2" oninput="updateCode('${id}')" />
+                <p class="mt-2">Hasil: <span id="result${id}">-</span></p>
+              </div>
+              <div class="md:w-1/2">
+                <div class="mb-2 flex space-x-2">
+                  <button onclick="switchLang('${id}', 'java')" data-lang="java" class="tab-btn bg-blue-500 text-white px-2 py-1 rounded text-sm">Java</button>
+                  <button onclick="switchLang('${id}', 'js')" data-lang="js" class="tab-btn bg-gray-300 px-2 py-1 rounded text-sm">JavaScript</button>
+                  <button onclick="switchLang('${id}', 'php')" data-lang="php" class="tab-btn bg-gray-300 px-2 py-1 rounded text-sm">PHP</button>
+                </div>
+                <div class="bg-gray-900 text-green-400 p-3 rounded overflow-auto max-h-60">
+                  <div class="lang-code java"></div>
+                  <div class="lang-code js hidden"></div>
+                  <div class="lang-code php hidden"></div>
+                </div>
+              </div>
+            </div>
+          </section>
+        `);
+        updateCode(id);
+      });
+    });
+  </script>
 </body>
-
 </html>
