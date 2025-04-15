@@ -28,14 +28,14 @@
             display: flex;
             align-items: center;
             padding: 0.5rem 1rem;
-            border-radius: 9999px; 
-            transition: background-color 0.3s ease, color 0.3s ease;
-            color: #0c5dd5; 
+            border-radius: 9999px; /* Membuat bulatan */
+            transition: background-color 0.3s ease, color 0.3s ease; /* Tambahkan transisi untuk warna teks */
+            color: #0c5dd5; /* Warna teks default (abu-abu gelap) */
             z-index: 88;
         }
 
         .dark .sidebar-link {
-            color: #0c5dd5;
+            color: #0c5dd5; /* Warna teks dalam mode gelap (abu-abu terang) */
         }
 
         .sidebar-link::before {
@@ -50,38 +50,42 @@
         }
 
         .sidebar-link.active::before {
-            background-color: #990fd0; 
+            background-color: #990fd0; /* Warna bulatan saat aktif */
         }
 
         .sidebar-link.active {
-            background-color: rgba(59, 130, 246, 0.1); 
-            color: #990fd0; 
+            background-color: rgba(59, 130, 246, 0.1); /* Latar belakang saat aktif */
+            color: #990fd0; /* Warna teks saat aktif */
         }
 
         .dark .sidebar-link.active {
-            color: #93c5fd; 
+            color: #93c5fd; /* Warna teks saat aktif dalam mode gelap */
         }
 
 
   </style>
 </head>
-<body class="bg-gray-100  relative">
-  <nav class="bg-gray-800 p-4 fixed w-full z-10 top-0 transition-all duration-300" id="navbar">
-    <div class="max-w-screen-xl mx-auto flex justify-between items-center">
-      <!-- Logo -->
-      <div class="text-white font-bold text-xl">
-        <img src="images/logo.png" alt="" class="w-10 h-10">
+<body class="bg-gray-100 p-4 relative">
+  <div class="-mx-4">
+    <nav id="navbar" class="bg-gray-800 p-4 fixed w-full z-10 top-0 transition-all duration-300">
+      <div class="max-w-screen-xl mx-auto flex justify-between items-center">
+        <!-- Logo -->
+        <div class="text-white font-bold text-xl">
+          <img src="images/logo.png" alt="Logo" class="w-10 h-10 transition-all duration-300" id="logo">
+        </div>
+    
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden flex items-center">
+          <button id="menu-toggle" class="text-white">
+            <!-- Icon bisa ditaruh di sini -->
+          </button>
+        </div>
       </div>
-      <!-- Mobile Menu Button -->
-      <div class="md:hidden flex items-center">
-        <button id="menu-toggle" class="text-white">
-          
-        </button>
-      </div>
-    </div>
-</nav>
+    </nav>
+    
+  </div>
   
-  <main class="space-y-6 mt-20 p-4"></main>
+  <main class="space-y-6 mt-16 "></main>
 
   <aside class="fixed right-4 top-1/2 transform -translate-y-1/2 z-40 space-y-2">
     <a href="#if" class="sidebar-link" data-id="if">If</a>
@@ -97,17 +101,20 @@
 document.addEventListener('DOMContentLoaded', function() {
   const sidebarLinks = document.querySelectorAll('.sidebar-link');
 
+  // Variabel untuk melacak section yang aktif berdasarkan scroll
   let activeSection = '';
 
+  // Fungsi untuk mengupdate link yang aktif berdasarkan scroll
   function updateActiveLink() {
     let currentSection = '';
     sidebarLinks.forEach(link => {
-      const section = document.querySelector(link.getAttribute('href')); 
+      const section = document.querySelector(link.getAttribute('href')); // Menggunakan href untuk menemukan elemen yang sesuai
       if (section && window.scrollY + window.innerHeight / 2 >= section.offsetTop) {
         currentSection = link.dataset.id;
       }
     });
 
+    // Jika section aktif berubah, update class 'active'
     if (currentSection !== activeSection) {
       sidebarLinks.forEach(link => link.classList.remove('active'));
       const activeLink = document.querySelector(`[data-id="${currentSection}"]`);
@@ -118,6 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
+  // Update link aktif saat halaman dimuat
   sidebarLinks.forEach(link => {
     link.classList.remove('active');
     if (link.dataset.id === activeSection) {
@@ -125,8 +133,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
+  // Panggil fungsi saat halaman di-scroll
   window.addEventListener('scroll', updateActiveLink);
 
+  // Panggil fungsi saat halaman dimuat untuk pertama kali
   updateActiveLink();
 });
 
