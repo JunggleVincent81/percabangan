@@ -7,7 +7,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     html {
-  scroll-padding-top: 80px;
+  scroll-padding-top: 120px;
+  scroll-behavior: smooth;
+
 }
 
     .custom-alert {
@@ -79,7 +81,7 @@
     
   </div>
   
-  <main class="space-y-6 mt-16 "></main>
+  
   <aside class="fixed right-4 top-1/2 transform -translate-y-1/2 z-40 space-y-2  p-2 hidden md:flex flex-col">
     <a href="#if" class="sidebar-link text-sm px-3 py-1 rounded hover:bg-[rgba(59, 130, 246, 0.1)] transition" data-id="if">If</a>
     <a href="#ifelse" class="sidebar-link text-sm px-3 py-1 rounded hover:bg-[rgba(59, 130, 246, 0.1)] transition" data-id="ifelse">If-Else</a>
@@ -92,7 +94,7 @@
 
   <!-- Custom alert element -->
   <div id="customAlert" class="custom-alert hidden"></div>
-
+  <main class="space-y-8 mt-20 ">
   <script>
 document.addEventListener('DOMContentLoaded', function() {
   const sidebarLinks = document.querySelectorAll('.sidebar-link');
@@ -105,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentSection = '';
     sidebarLinks.forEach(link => {
       const section = document.querySelector(link.getAttribute('href')); // Menggunakan href untuk menemukan elemen yang sesuai
-      if (section && window.scrollY + window.innerHeight / 1.9 >= section.offsetTop) {
+      if (section && window.scrollY + window.innerHeight / 2 >= section.offsetTop) {
         currentSection = link.dataset.id;
       }
     });
@@ -300,7 +302,7 @@ function toggleFlowchart(id) {
       sections.forEach(({ id, title }) => {
         const lower = id.toLowerCase();
         main.insertAdjacentHTML("beforeend", `
-          <section id="${lower}" class="bg-white p-6 rounded shadow scrollTop ">
+          <section id="${lower}" class="mb-20 bg-white p-6 rounded shadow offsetTop">
             <h2 class="text-lg font-bold mb-2">${title}</h2>
             <div class="flex flex-col md:flex-row gap-4">
       <div class="md:w-1/2 p-4 bg-white rounded-lg shadow-md">
@@ -368,8 +370,9 @@ function toggleFlowchart(id) {
     const activeLink = document.querySelector(`[data-id="${currentSection.toLowerCase()}"]`);
 
   </script>
+  </main>
   <div class="-mx-4 -mb-4">
-  <footer class="bg-gray-800 text-white w-full py-6 mt-5">
+  <footer class="bg-gray-800 text-white w-full py-6 mt-16">
   <div class="max-w-7xl mx-auto px-4 flex items-center justify-end space-x-4">
     <!-- Logo -->
     <img src="images/logo.png" alt="Logo" class="h-8 w-8 object-contain">
