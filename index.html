@@ -338,22 +338,30 @@ function toggleFlowchart(id) {
  <!-- Bubble Flowchart -->
 <div id="flowchart-${id}" class="hidden absolute top-12 left-2 z-50 bg-white border border-gray-300 rounded-lg shadow-md p-3 w-64">
   <div class="flex justify-between items-center mb-2">
-     <button onclick="document.getElementById('flowchart-${id}').classList.add('hidden');" class="text-lg font-bold text-gray-600 hover:text-gray-800">&times;</button>
-    <span class="text-sm font-medium text-gray-700">Flowchart</span>
-      <a href="images/flowchart-${id}.png" fill="none"
-   class="text-blue-600 hover:text-blue-800 transition">
-  <!-- Heroicon: Eye (See) -->
-  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
-       viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-    <path stroke-linecap="round" stroke-linejoin="round"
-          d="M2.458 12C3.732 7.943 7.813 5 12 5s8.268 2.943 9.542 7c-1.274 4.057-5.355 7-9.542 7S3.732 16.057 2.458 12zM12 8a4 4 0 100 8 4 4 0 000-8z"/>
-  </svg>
-</a>
+    <!-- Tombol Close -->
+    <button onclick="document.getElementById('flowchart-${id}').classList.add('hidden');"
+            class="text-lg font-bold text-gray-600 hover:text-gray-800">&times;</button>
 
-        </div>
-         <img src="images/flowchart-${id}.png" alt="Flowchart ${id}"
-         class="rounded w-full h-auto shadow-sm" />
-        </div>
+    <!-- Judul Flowchart -->
+    <span class="text-sm font-medium text-gray-700">Flowchart</span>
+
+    <!-- Tombol Lihat di Tab Baru -->
+    <a href="images/flowchart-${id}.png" target="_blank"
+       class="text-blue-600 hover:text-blue-800 transition">
+      <!-- Icon Eye -->
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+           viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round"
+              d="M2.458 12C3.732 7.943 7.813 5 12 5s8.268 2.943 9.542 7c-1.274 4.057-5.355 7-9.542 7S3.732 16.057 2.458 12zM12 8a4 4 0 100 8 4 4 0 000-8z"/>
+      </svg>
+    </a>
+  </div>
+
+  <!-- Gambar Flowchart -->
+  <img src="images/flowchart-${id}.png" alt="Flowchart ${id}"
+       class="rounded w-full h-auto shadow-sm" />
+</div>
+
           <!-- Live Code Area -->
             <div class="bg-gray-900 text-green-400 text-sm font-mono px-4 py-3 rounded-b-lg overflow-auto max-h-60">
               <div class="lang-code java"></div>
