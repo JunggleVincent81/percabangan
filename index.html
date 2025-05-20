@@ -156,33 +156,39 @@ document.addEventListener('DOMContentLoaded', function() {
 
       switch (section) {
         case 'If':
-          java += `\nif (num > 0) {\n    System.out.println("Positif");\n}`;
-          js += `\nif (num > 0) {\n  console.log("Positif");\n}`;
-          php += `\nif ($num > 0) {\n    echo "Positif";\n}`;
-          span.textContent = num > 0 ? "Positif" : "";
+          java += `\nif (num > 0) {\n    System.out.println("Hasil: Positif");\n}`;
+          js += `\nif (num > 0) {\n  console.log("Hasil: Positif");\n}`;
+          php += `\nif ($num > 0) {\n    echo "Hasil: Positif";\n}`;
+          if (num > 0) {
+  span.textContent = "Positif";
+  resultWrapper.style.display = "block";
+} else {
+  span.textContent = "";
+  resultWrapper.style.display = "none";
+}
           break;
         case 'IfElse':
-          java += `\nif (num > 0) {\n    System.out.println("Positif");\n} else {\n    System.out.println("Negatif atau Nol");\n}`;
-          js += `\nif (num > 0) {\n  console.log("Positif");\n} else {\n  console.log("Negatif atau Nol");\n}`;
-          php += `\nif ($num > 0) {\n    echo "Positif";\n} else {\n    echo "Negatif atau Nol";\n}`;
+          java += `\nif (num > 0) {\n    System.out.println("Hasil: Positif");\n} else {\n    System.out.println("Hasil: Negatif atau Nol");\n}`;
+          js += `\nif (num > 0) {\n  console.log("Hasil: Positif");\n} else {\n  console.log("Hasil: Negatif atau Nol");\n}`;
+          php += `\nif ($num > 0) {\n    echo "Hasil: Positif";\n} else {\n    echo "Hasil: Negatif atau Nol";\n}`;
           span.textContent = num > 0 ? "Positif" : "Negatif atau Nol";
           break;
         case 'ElseIf':
-          java += `\nif (num > 0) {\n    System.out.println("Positif");\n} else if (num < 0) {\n    System.out.println("Negatif");\n} else {\n    System.out.println("Nol");\n}`;
-          js += `\nif (num > 0) {\n  console.log("Positif");\n} else if (num < 0) {\n  console.log("Negatif");\n} else {\n  console.log("Nol");\n}`;
-          php += `\nif ($num > 0) {\n    echo "Positif";\n} elseif ($num < 0) {\n    echo "Negatif";\n} else {\n    echo "Nol";\n}`;
+          java += `\nif (num > 0) {\n    System.out.println("Hasil: Positif");\n} else if (num < 0) {\n    System.out.println("Hasil: Negatif");\n} else {\n    System.out.println("Hasil: Nol");\n}`;
+          js += `\nif (num > 0) {\n  console.log("Hasil: Positif");\n} else if (num < 0) {\n  console.log("Hasil: Negatif");\n} else {\n  console.log("Hasil: Nol");\n}`;
+          php += `\nif ($num > 0) {\n    echo "Hasil: Positif";\n} elseif ($num < 0) {\n    echo "Hasil: Negatif";\n} else {\n    echo "Hasil: Nol";\n}`;
           span.textContent = num > 0 ? "Positif" : num < 0 ? "Negatif" : "Nol";
           break;
         case 'Switch':
-          java += `\nswitch (num) {\n  case 1:\n    System.out.println("Satu");\n    break;\n  case 2:\n    System.out.println("Dua");\n    break;\n  case 3:\n    System.out.println("Tiga");\n    break;\n  default:\n    System.out.println("Diluar jangkauan");\n}`;
-          js += `\nswitch(num) {\n  case 1:\n    console.log("Satu");\n    break;\n  case 2:\n    console.log("Dua");\n    break;\n  case 3:\n    console.log("Tiga");\n    break;\n  default:\n    console.log("Diluar jangkauan");\n}`;
-          php += `\nswitch ($num) {\n  case 1:\n    echo "Satu";\n    break;\n  case 2:\n    echo "Dua";\n    break;\n  case 3:\n    echo "Tiga";\n    break;\n  default:\n    echo "Diluar jangkauan";\n}`;
+          java += `\nswitch (num) {\n  case 1:\n    System.out.println("Hasil: Satu");\n    break;\n  case 2:\n    System.out.println("Hasil: Dua");\n    break;\n  case 3:\n    System.out.println("Hasil: Tiga");\n    break;\n  default:\n    System.out.println("Hasil: Diluar jangkauan");\n}`;
+          js += `\nswitch(num) {\n  case 1:\n    console.log("Hasil: Satu");\n    break;\n  case 2:\n    console.log("Hasil: Dua");\n    break;\n  case 3:\n    console.log("Hasil: Tiga");\n    break;\n  default:\n    console.log("Hasil: Diluar jangkauan");\n}`;
+          php += `\nswitch ($num) {\n  case 1:\n    echo "Hasil: Satu";\n    break;\n  case 2:\n    echo "Hasil: Dua";\n    break;\n  case 3:\n    echo "Hasil: Tiga";\n    break;\n  default:\n    echo "Hasil: Diluar jangkauan";\n}`;
           span.textContent = num === 1 ? "Satu" : num === 2 ? "Dua" : num === 3 ? "Tiga" : "Diluar jangkauan";
           break;
         case 'Ternary':
-          java += `\nString result = (num > 0) ? "Positif" : "Negatif atau Nol";\nSystem.out.println(result);`;
-          js += `\nlet result = (num > 0) ? "Positif" : "Negatif atau Nol";\nconsole.log(result);`;
-          php += `\n$result = ($num > 0) ? "Positif" : "Negatif atau Nol";\necho $result;`;
+          java += `\nString result = (num > 0) ? "Hasil: Positif" : "Hasil: Negatif atau Nol";\nSystem.out.println(result);`;
+          js += `\nlet result = (num > 0) ? "Hasil: Positif" : "Hasil: Negatif atau Nol";\nconsole.log(result);`;
+          php += `\n$result = ($num > 0) ? "Hasil: Positif" : "Hasil: Negatif atau Nol";\necho $result;`;
           span.textContent = num > 0 ? "Positif" : "Negatif atau Nol";
           break;
       }
